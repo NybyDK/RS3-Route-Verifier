@@ -50,6 +50,7 @@ player.nextStep();
 player.addItem("Bronze ore box");
 player.addItem("Bronze wire");
 player.addItem("Bronze bar", 6);
+player.gainXP("Mining", 200);
 player.gainXP("Smithing", 9 + 30 + 15);
 
 // Buy supplies from Jones
@@ -65,6 +66,7 @@ player.gainXP("Fishing", Math.ceil(player.calculateXP(10) / 10) * 10);
 // Quest: Let Them Eat Pie
 player.nextStep();
 player.buyItem("Wizard's Mind Bomb", 2, 10);
+player.buyItem("Pot of flour", 14, 2);
 player.completeQuest("Let Them Eat Pie");
 
 // Quest: Wolf Whistle
@@ -128,11 +130,102 @@ player.buyItem("Bucket of water", 6, 2);
 // Varrock Lodestone
 player.nextStep();
 
-// Natural history quiz
+// Activity: Natural history quiz
 player.nextStep();
-player.gainXP("Slayer", 1000);
-player.gainXP("Hunter", 1000);
+player.completeActivity("Natural history quiz");
 player.addItem("Statue collection bag");
+
+// Quest: Demon Slayer
+player.nextStep();
+player.completeQuest("Demon Slayer", {
+    defence: [100, 100, 100],
+});
+
+// Teleport to Ardougne
+player.nextStep();
+
+// Quest: Clock Tower
+player.nextStep();
+player.completeQuest("Clock Tower");
+
+// Quest: Monk's Friend
+player.nextStep();
+player.completeQuest("Monk's Friend");
+
+// Activity: Archaeology tutorial
+player.nextStep();
+player.addItem("Plank", 2);
+player.addItem("Rotten tomato");
+player.addItem("Greenman's Ale");
+player.completeActivity("Archaeology tutorial");
+player.addItem("Archaeology journal");
+player.addItem("Soil box");
+
+// Travel to Anachronia and complete the base camp tutorial
+player.nextStep();
+
+// Herby Werby
+player.nextStep();
+player.gainXP("Herblore", 36 * 100);
+
+// Build Anachronia lodestone and buy salt in Burthorpe
+player.nextStep();
+player.addItem("Bag of salt");
+
+// Train Magic at Shattered Worlds
+player.nextStep();
+player.gainXP("Magic", player.calculateXP(55) - player.skills.magic);
+player.gainXP("Constitution", player.skills.magic * (1 / 3));
+
+// Train Ranged at Shattered Worlds
+player.nextStep();
+player.gainXP("Ranged", player.calculateXP(45) - player.skills.ranged);
+player.gainXP("Constitution", player.skills.ranged * (1 / 3));
+
+// Activity: Supply and Demand
+player.nextStep();
+player.completeActivity("Supply and Demand", {
+    smithing: [180, 180, 180, 180],
+    farming: [180, 180, 180],
+    divination: [180, 180, 180, 180, 180, 180, 180, 180],
+});
+
+// Quest: What's Mine is Yours
+player.nextStep();
+player.completeQuest("What's Mine is Yours");
+player.removeItem("Bucket");
+player.addItem("Bucket of sap");
+player.buyItem("Raw sardine", 10);
+player.buyItem("Bronze nail", 7, 2);
+player.buyItem("Woad leaf", 25, 4);
+
+// Quest: Gertrude's Cat
+player.nextStep();
+player.completeQuest("Gertrude's Cat");
+
+// Prepare for The Knight's Sword
+player.nextStep();
+player.addItem("Iron ore", 2);
+player.addItem("Redberry pie");
+
+// Quest: The Knight's Sword
+player.nextStep();
+player.removeItem("Iron ore", 2);
+player.addItem("Iron bar", 2);
+player.completeQuest("The Knight's Sword");
+
+// Activity: Stronghold of Security
+player.nextStep();
+player.completeActivity("Stronghold of Security");
+
+// Quest: Gunnar's Ground
+player.nextStep();
+player.completeQuest("Gunnar's Ground", {
+    divination: 200,
+});
+
+// Draynor Lodestone
+player.nextStep();
 
 // Overview
 console.log(player.overview());

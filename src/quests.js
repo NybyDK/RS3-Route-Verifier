@@ -199,4 +199,151 @@ module.exports = [
         },
         points: 2,
     },
+    {
+        name: "Demon Slayer",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    {
+                        amount: 100,
+                        skills: ["attack", "strength", "defence", "constitution", "ranged", "magic", "necromancy"],
+                    },
+                    {
+                        amount: 100,
+                        skills: ["attack", "strength", "defence", "constitution", "ranged", "magic", "necromancy"],
+                    },
+                    {
+                        amount: 100,
+                        skills: ["attack", "strength", "defence", "constitution", "ranged", "magic", "necromancy"],
+                    },
+                ],
+                forced: [],
+            },
+            items: [{ name: "Silverlight", quantity: 1 }],
+        },
+        points: 3,
+    },
+    {
+        name: "Gertrude's Cat",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [
+                { name: "Bucket of milk", quantity: 1 },
+                { name: "Raw sardine", quantity: 1 },
+                { name: "Coins", quantity: 100 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 1525, skill: "cooking" }],
+            },
+            items: [
+                { name: "Cat", quantity: 1 },
+                { name: "Chocolate cake", quantity: 1 },
+                { name: "Stew", quantity: 1 },
+            ],
+        },
+        points: 1,
+    },
+    {
+        name: "Clock Tower",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [{ name: "Bucket of water", quantity: 1 }],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [],
+            },
+            items: [{ name: "Coins", quantity: 500 }],
+        },
+        points: 1,
+    },
+    {
+        name: "Monk's Friend",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [{ name: "Jug of water", quantity: 1 }],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 2000, skill: "woodcutting" }],
+            },
+            items: [{ name: "Law rune", quantity: 8 }],
+        },
+        points: 1,
+    },
+    {
+        name: "What's Mine is Yours",
+        requirements: {
+            skills: {
+                smithing: 5,
+            },
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 1000, skill: "mining" },
+                    { amount: 400, skill: "smithing" },
+                ],
+            },
+            items: [{ name: "Coins", quantity: 180 }, { name: "Gofannon amulet" }],
+        },
+        points: 1,
+    },
+    {
+        name: "The Knight's Sword",
+        requirements: {
+            skills: {
+                mining: 10,
+                cooking: 10,
+                smithing: 10,
+            },
+            quests: [],
+            items: [
+                { name: "Redberry pie", quantity: 1 },
+                { name: "Iron bar", quantity: 2 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 12725, skill: "smithing" }],
+            },
+            items: [],
+        },
+        points: 1,
+    },
+    {
+        name: "Gunnar's Ground",
+        requirements: {
+            skills: {
+                crafting: 5,
+            },
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [{ amount: 200 }],
+                forced: [{ amount: 300 + 125, skill: "crafting" }],
+            },
+            items: [],
+        },
+        points: 5,
+    },
 ];

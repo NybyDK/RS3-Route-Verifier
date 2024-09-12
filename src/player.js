@@ -1,4 +1,5 @@
 const quests = require("./quests");
+const activities = require("./activities");
 
 const XPThresholds = [
     0, 83, 174, 276, 388, 512, 650, 801, 969, 1154, 1358, 1584, 1833, 2107, 2411, 2746, 3115, 3523, 3973, 4470, 5018,
@@ -64,6 +65,7 @@ module.exports = class Player {
         };
         this.items = [];
         this.quests = [];
+        this.activities = [];
     }
 
     nextStep() {
@@ -187,6 +189,26 @@ module.exports = class Player {
         }
     }
 
+    checkLevel(skill, level, invention = false) {
+        if (this.calculateLevel(this.skills[skill], invention) < level) {
+            throw new Error(`Skill '${skill}' must be at least level ${level} during step ${this.step}`);
+        }
+    }
+
+    checkItem(itemName, quantity) {
+        const item = this.items.find(item => item.name === itemName);
+
+        if (!item) {
+            throw new Error(`Item '${itemName}' not found during step ${this.step}`);
+        }
+
+        if (item.quantity < quantity) {
+            throw new Error(
+                `You only have ${item.quantity} of ${quantity} '${itemName}' required during step ${this.step}`,
+            );
+        }
+    }
+
     completeQuest(questName, xpDistribution = {}) {
         const quest = quests.find(q => q.name === questName);
 
@@ -231,7 +253,9 @@ module.exports = class Player {
         }
 
         for (const requiredItem of quest.requirements.items) {
-            this.removeItem(requiredItem.name, requiredItem.quantity);
+            if (!requiredItem.notConsumed) {
+                this.removeItem(requiredItem.name, requiredItem.quantity);
+            }
         }
 
         const rewardXP = quest.rewards.xp.choice.map(reward => reward.amount);
@@ -276,5 +300,92 @@ module.exports = class Player {
         }
 
         this.quests.push(questName);
+    }
+
+    completeActivity(activityName, xpDistribution = {}) {
+        const activity = activities.find(q => q.name === activityName);
+
+        if (!activities) {
+            throw new Error(`Activity '${activityName}' not found`);
+        }
+
+        if (this.activities.includes(activityName)) {
+            throw new Error(`Activity '${activityName}' is already completed during step ${this.step}`);
+        }
+
+        for (const [skill, level] of Object.entries(activity.requirements.skills)) {
+            if (this.calculateLevel(this.skills[skill], skill === "invention") < level) {
+                throw new Error(
+                    `Skill '${skill}' must be at least level ${level} to complete ${activityName} during step ${this.step}`,
+                );
+            }
+        }
+
+        for (const requiredItem of activity.requirements.items) {
+            const item = this.items.find(item => item.name === requiredItem.name);
+
+            if (!item) {
+                throw new Error(
+                    `Item '${requiredItem.name}' is required to complete ${activityName} during step ${this.step}`,
+                );
+            }
+
+            if (item.quantity < requiredItem.quantity) {
+                throw new Error(
+                    `You only have ${item.quantity} of ${requiredItem.quantity} '${requiredItem.name}' required to complete '${activityName}' during step ${this.step}`,
+                );
+            }
+        }
+
+        for (const requiredItem of activity.requirements.items) {
+            if (!requiredItem.notConsumed) {
+                this.removeItem(requiredItem.name, requiredItem.quantity);
+            }
+        }
+
+        const rewardXP = activity.rewards.xp.choice.map(reward => reward.amount);
+        const distributedXP = Object.values(xpDistribution).flat();
+
+        rewardXP.sort((a, b) => a - b);
+        distributedXP.sort((a, b) => a - b);
+
+        if (rewardXP.length !== distributedXP.length || !rewardXP.every((xp, index) => xp === distributedXP[index])) {
+            throw new Error(
+                `XP distribution does not match the activity rewards for ${activityName} during step ${this.step}`,
+            );
+        }
+
+        let rewardIndex = 0;
+        for (const [skill, XPValue] of Object.entries(xpDistribution)) {
+            const XPArray = Array.isArray(XPValue) ? XPValue : [XPValue];
+
+            for (const XP of XPArray) {
+                const reward = activity.rewards.xp.choice[rewardIndex];
+                rewardIndex++;
+
+                if (reward.skills && !reward.skills.includes(skill)) {
+                    throw new Error(`XP for ${skill} is not allowed for ${activityName} during step ${this.step}`);
+                }
+
+                if (reward.req && this.calculateLevel(this.skills[skill], skill === "invention") < reward.req) {
+                    throw new Error(
+                        `Skill '${skill}' must be at least level ${reward.req} to receive XP from ${activityName} during step ${this.step}`,
+                    );
+                }
+                this.gainXP(skill, XP);
+            }
+        }
+
+        for (const requiredItem of activity.requirements.items) {
+            this.removeItem(requiredItem.name, requiredItem.quantity);
+        }
+
+        for (const { amount, skill } of activity.rewards.xp.forced) {
+            this.gainXP(skill, amount);
+        }
+
+        for (const item of activity.rewards.items) {
+            this.addItem(item.name, item.quantity);
+        }
     }
 };
