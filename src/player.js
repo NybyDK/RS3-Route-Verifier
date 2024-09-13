@@ -153,7 +153,7 @@ module.exports = class Player {
         }
     }
 
-    buyItem(itemName, price, quantity = 1) {
+    buy(itemName, price, quantity = 1) {
         if (itemName === undefined) {
             throw new Error(`Item not specified during step ${this.step}`);
         }
@@ -173,7 +173,7 @@ module.exports = class Player {
         const item = this.items.find(item => item.name === itemName);
 
         if (!item) {
-            throw new Error(`Item '${item}' not found during step ${this.step}`);
+            throw new Error(`Item '${itemName}' not found during step ${this.step}`);
         }
 
         if (item.quantity < quantity) {
@@ -190,6 +190,8 @@ module.exports = class Player {
     }
 
     checkLevel(skill, level, invention = false) {
+        skill = skill.toLowerCase();
+
         if (this.calculateLevel(this.skills[skill], invention) < level) {
             throw new Error(`Skill '${skill}' must be at least level ${level} during step ${this.step}`);
         }
@@ -206,6 +208,13 @@ module.exports = class Player {
             throw new Error(
                 `You only have ${item.quantity} of ${quantity} '${itemName}' required during step ${this.step}`,
             );
+        }
+    }
+
+    checkQuestPoints(qp) {
+        const QPs = this.calculateQuestPoints();
+        if (QPs < qp) {
+            throw new Error(`You only have ${QPs}/${qp} QP during step ${this.step}`);
         }
     }
 
@@ -321,6 +330,14 @@ module.exports = class Player {
             }
         }
 
+        for (const requiredQuest of activity.requirements.quests) {
+            if (!this.quests.includes(requiredQuest)) {
+                throw new Error(
+                    `Quest '${requiredQuest}' is required to complete ${activityName} during step ${this.step}`,
+                );
+            }
+        }
+
         for (const requiredItem of activity.requirements.items) {
             const item = this.items.find(item => item.name === requiredItem.name);
 
@@ -374,10 +391,6 @@ module.exports = class Player {
                 }
                 this.gainXP(skill, XP);
             }
-        }
-
-        for (const requiredItem of activity.requirements.items) {
-            this.removeItem(requiredItem.name, requiredItem.quantity);
         }
 
         for (const { amount, skill } of activity.rewards.xp.forced) {
