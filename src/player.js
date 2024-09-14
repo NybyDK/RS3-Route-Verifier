@@ -134,6 +134,7 @@ module.exports = class Player {
             Items: this.items,
             Quests: this.quests,
             Stats: this.calculateStats(),
+            Total: Object.values(this.skills).reduce((total, xp) => total + this.calculateLevel(xp), 0),
             QP: this.calculateQuestPoints(),
             Step: this.step,
         };

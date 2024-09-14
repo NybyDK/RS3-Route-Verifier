@@ -18,15 +18,15 @@ module.exports = [
         },
     },
     {
-        name: "Water filtration",
+        name: "Water filtration system",
         requirements: {
             skills: {},
             quests: [],
             items: [
-                { name: "bronze bar", quantity: 5 },
-                { name: "silver bar", quantity: 2 },
-                { name: "bucket of sand", quantity: 6 },
-                { name: "big fishing net", quantity: 1 },
+                { name: "Bronze bar", quantity: 5 },
+                { name: "Silver bar", quantity: 2 },
+                { name: "Bucket of sand", quantity: 6 },
+                { name: "Big fishing net", quantity: 1 },
             ],
         },
         rewards: {

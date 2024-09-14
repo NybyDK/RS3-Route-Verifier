@@ -2,6 +2,7 @@ const Player = require("./player");
 
 process.on("uncaughtException", err => {
     console.error(`Error: ${err.message}`);
+    console.error(err.stack.split("\n")[2]);
     process.exit(1);
 });
 
@@ -16,10 +17,9 @@ player.nextStep();
 player.nextStep();
 player.nextStep();
 
-// Craft Mind Runes
+// Claim Wicked Hood
 player.nextStep();
 player.addItem("Wicked Hood");
-player.gainXP("Runecrafting", 100 * 5.5);
 
 // Skip basic challenges
 player.nextStep();
@@ -49,22 +49,14 @@ player.addItem("Thread", 10);
 player.nextStep();
 player.addItem("Bronze ore box");
 player.addItem("Bronze wire");
-player.addItem("Bronze bar", 6);
+player.addItem("Bronze bar", 8);
 player.gainXP("Mining", 200);
-player.gainXP("Smithing", 9 + 30 + 15);
+player.gainXP("Smithing", 11 + 30 + 15);
 
 // Buy supplies from Jones
 player.nextStep();
 player.buy("Watering can", 8);
 player.buy("Compost", 20);
-
-// Fish for level 10
-player.nextStep();
-player.addItem("Raw crayfish");
-player.gainXP("Fishing", Math.ceil(player.calculateXP(10) / 10) * 10);
-player.gainXP("Woodcutting", 2 * 25);
-player.gainXP("Firemaking", 2 * 40);
-player.addItem("Ashes", 4);
 
 // Quest: Let Them Eat Pie
 player.nextStep();
@@ -73,6 +65,7 @@ player.buy("Pot of flour", 14, 2);
 player.buy("Vial of water pack", 500);
 player.removeItem("Vial of water pack");
 player.addItem("Vial of water", 50);
+player.buy("Limpwurt root", 7, 5);
 player.completeQuest("Let Them Eat Pie");
 
 // Quest: Wolf Whistle
@@ -85,12 +78,14 @@ player.completeQuest("Violet is Blue", {
     summoning: [1000, 1000],
     herblore: 1000,
 });
+player.buy("Limpwurt root", 7, 5);
 
 // Quest: Violet is Blue Too
 player.nextStep();
 player.completeQuest("Violet is Blue Too", {
     herblore: [4000, 4000, 4000],
 });
+player.buy("Limpwurt root", 7, 5);
 
 // Ring of kinship
 player.nextStep();
@@ -109,9 +104,10 @@ player.nextStep();
 
 // Quest: Cook's Assistant
 player.nextStep();
+player.addItem("Bowl of hot water");
 player.completeQuest("Cook's Assistant");
 
-// Quest: The Blood Pact
+// Quest: Myths of the White Lands
 player.nextStep();
 player.completeQuest("Myths of the White Lands", {
     farming: [500],
@@ -147,8 +143,12 @@ player.completeQuest("Demon Slayer", {
     defence: [100, 100, 100],
 });
 
-// Teleport to Ardougne
+// Activate Wilderness, Edgeville, and Ardougne lodestones
 player.nextStep();
+
+// Buy Supplies from Aemad
+player.nextStep();
+player.buy("Ball of wool", 5);
 
 // Quest: Clock Tower
 player.nextStep();
@@ -195,6 +195,7 @@ player.completeActivity("Supply and Demand", {
     farming: [180, 180, 180],
     divination: [180, 180, 180, 180, 180, 180, 180, 180],
 });
+player.buy("Limpwurt root", 7, 5);
 
 // Quest: What's Mine is Yours
 player.nextStep();
@@ -208,8 +209,19 @@ player.buy("Woad leaf", 25, 4);
 // Quest: Gertrude's Cat
 player.nextStep();
 player.completeQuest("Gertrude's Cat");
+
+// Varrock Supplies
+player.nextStep();
 player.buy("Yew shortbow", 800);
+player.buy("Leather gloves", 6);
 player.buy("Iron arrow", 20, 100);
+player.checkLevel("Mining", 10);
+player.addItem("Iron ore", 4);
+player.removeItem("Pot of flour");
+player.removeItem("Pie dish");
+player.removeItem("Redberries");
+player.checkLevel("Cooking", 10);
+player.addItem("Redberry pie");
 
 // Quest: A Soul's Bane
 player.nextStep();
@@ -219,12 +231,9 @@ player.completeQuest("A Soul's Bane");
 player.nextStep();
 player.completeQuest("A Shadow over Ashdale");
 
-// Prepare for The Knight's Sword
+// Quest: Recruitment Drive
 player.nextStep();
-player.checkLevel("Mining", 10);
-player.addItem("Iron ore", 4);
-player.checkLevel("Cooking", 10);
-player.addItem("Redberry pie");
+player.completeQuest("Recruitment Drive");
 
 // Quest: The Knight's Sword
 player.nextStep();
@@ -251,6 +260,19 @@ player.completeQuest("Vampyre Slayer", {
     defence: 4825,
 });
 
+// Train Firemaking to 30
+player.nextStep();
+player.gainXP("Firemaking", player.calculateXP(30) - player.skills.firemaking);
+player.addItem("Ashes", 3);
+
+// Train Woodcutting to 30 for Willow log
+player.nextStep();
+player.addItem("Logs", 119);
+player.addItem("Oak logs", 3);
+player.gainXP("Woodcutting", player.calculateXP(30) - player.skills.woodcutting);
+player.addItem("Willow logs");
+player.gainXP("Woodcutting", 67.5);
+
 // Quest: Necromancy!
 player.nextStep();
 player.completeQuest("Necromancy!");
@@ -263,10 +285,10 @@ player.addItem("Deathwarden boots (tier 10)");
 // Train Necromancy at Troll Cave
 player.nextStep();
 player.gainXP("Necromancy", player.calculateXP(24) - player.skills.necromancy);
-player.gainXP("Prayer", player.calculateXP(10) - player.skills.prayer);
 
 // Quest: Kili Row
 player.nextStep();
+player.removeItem("Ashes", 2);
 player.addItem("Regular ghostly ink", 2);
 player.addItem("Basic ghostly ink", 7);
 player.addItem("Basic ritual candle", 4);
@@ -282,6 +304,9 @@ player.completeQuest("Ernest the Chicken");
 
 // Quest: Swept Away
 player.nextStep();
+player.buy("Black wizard hat", 2);
+player.buy("Black wizard robe top", 13);
+player.buy("Black wizard robe bottom", 2);
 player.buy("Raw sardine", 10, 10);
 player.buy("Chocolate bar", 20);
 player.buy("Bread", 24);
@@ -322,9 +347,21 @@ player.buy("Water rune", 17, 1000);
 player.buy("Air rune", 17, 1000);
 player.buy("Earth rune", 17, 1000);
 
+// Quest: Rune Mysteries
+player.nextStep();
+player.completeQuest("Rune Mysteries");
+
+// Quest: Rune Memories
+player.nextStep();
+player.completeQuest("Rune Memories");
+
 // Train Runecrafting and make Vis Wax
 player.nextStep();
 player.gainXP("Runecrafting", player.calculateXP(50) - player.skills.runecrafting);
+player.addItem(
+    "Rune essence",
+    2.5 * player.calculateLevel(player.skills.runecrafting) * (player.calculateLevel(player.skills.runecrafting) + 1),
+);
 
 // Quest: Tree Gnome Village
 player.nextStep();
@@ -351,19 +388,6 @@ player.completeQuest("Diamond in the Rough", {
 player.nextStep();
 player.completeQuest("The Jack of Spades");
 
-// Train Firemaking to 30
-player.nextStep();
-player.gainXP("Firemaking", player.calculateXP(30) - player.skills.firemaking);
-player.addItem("Ashes");
-
-// Train Woodcutting to 30 for Willow log
-player.nextStep();
-player.addItem("Logs", 119);
-player.addItem("Oak logs", 3);
-player.gainXP("Woodcutting", player.calculateXP(30) - player.skills.woodcutting);
-player.addItem("Willow logs");
-player.gainXP("Woodcutting", 67.5);
-
 // Quest: Icthlarin's Little Helper
 player.nextStep();
 player.completeQuest("Icthlarin's Little Helper");
@@ -372,6 +396,10 @@ player.completeQuest("Icthlarin's Little Helper");
 player.nextStep();
 player.checkQuestPoints(50);
 player.addItem("Coins", 250_000);
+player.addItem("Rope");
+player.addItem("Bullseye lantern (lit)");
+player.addItem("Law rune", 2);
+player.addItem("Spade");
 
 // Quest: Heartstealer
 player.nextStep();
@@ -421,11 +449,11 @@ player.removeItem("Plank", 96);
 player.addItem("Wooden frame", 8);
 player.gainXP("Construction", 8 * 54);
 player.completeQuest("New Foundations");
-player.removeItem("Logs");
-player.addItem("Plank");
+player.removeItem("Logs", 3);
+player.addItem("Plank", 3);
 player.removeItem("Oak logs", 3);
 player.addItem("Oak plank", 3);
-player.gainXP("Construction", 1 * 3 + 3 * 4.5);
+player.gainXP("Construction", 3 * 3 + 3 * 4.5);
 
 // Quest: Bringing Home the Bacon
 player.nextStep();
@@ -436,6 +464,189 @@ player.nextStep();
 player.buy("Woad leaf", 25, 1000);
 player.completeActivity("PoF Tutorial");
 player.removeItem("Woad leaf", 27 * 7);
+
+// Quest: Waterfall Quest
+player.nextStep();
+player.buy("Papyrus", 10);
+player.buy("Swamp paste", 31);
+player.completeQuest("Waterfall Quest");
+
+// Quest: Dwarf Cannon
+player.nextStep();
+player.completeQuest("Dwarf Cannon");
+
+// Quest: Hazeel Cult
+player.nextStep();
+player.completeQuest("Hazeel Cult");
+
+// Quest: Fight Arena
+player.nextStep();
+player.addItem("Silver ore", 3);
+player.completeQuest("Fight Arena");
+
+// Quest: Witch's House
+player.nextStep();
+player.completeQuest("Witch's House");
+
+// Quest: Imp Catcher
+player.nextStep();
+player.completeQuest("Imp Catcher");
+
+// Quest: Missing, Presumed Death
+player.nextStep();
+player.completeQuest("Missing, Presumed Death", {
+    defence: 1500,
+});
+
+// Quest: Priest in Peril
+player.nextStep();
+player.completeQuest("Priest in Peril");
+
+// Canifis Lodestone
+player.nextStep();
+
+// Quest: Merlin's Crystal
+player.nextStep();
+player.addItem("Insect repellent");
+player.addItem("Bucket of wax");
+player.buy("Big fishing net", 20);
+player.buy("Bucket", 2, 30);
+player.completeQuest("Merlin's Crystal");
+
+// Quest: Holy Grail
+player.nextStep();
+player.completeQuest("Holy Grail");
+player.addItem("Red vine worm", 3);
+player.addItem("Dwellberries", 2);
+player.addItem("Coal", 12);
+player.removeItem("Bucket", 7);
+player.addItem("Bucket of sand", 7);
+player.removeItem("Bucket of sand");
+player.buy("Vial pack", 250);
+player.removeItem("Vial pack");
+player.addItem("Vial", 50);
+player.addItem("Molten glass");
+
+// Activity: Water filtration system
+player.nextStep();
+player.removeItem("Silver ore", 3);
+player.addItem("Silver bar", 3);
+player.completeActivity("Water filtration system");
+
+// Quest: Observatory Quest
+player.nextStep();
+player.completeQuest("Observatory Quest");
+
+// Quest: Elemental Workshop I
+player.nextStep();
+player.addItem("Soft clay", 4);
+player.buy("Stew", 20, 9);
+player.completeQuest("Elemental Workshop I");
+
+// Quest: Elemental Workshop II
+player.nextStep();
+player.completeQuest("Elemental Workshop II");
+
+// Quest: Tribal Totem
+player.nextStep();
+player.addItem("Monkey bones");
+player.completeQuest("Tribal Totem");
+
+// Quest: Troll Stronghold
+player.nextStep();
+player.completeQuest("Troll Stronghold", {
+    herblore: [10000, 10000],
+});
+
+// Quest: The Golem
+player.nextStep();
+player.completeQuest("The Golem");
+
+// Quest: Shadow of the Storm
+player.nextStep();
+player.completeQuest("Shadow of the Storm", {
+    necromancy: 10000,
+});
+
+// Quest: Once Upon a Slime
+player.nextStep();
+player.completeQuest("Once Upon a Slime");
+
+// Quest: The Feud
+player.nextStep();
+player.completeQuest("The Feud");
+
+// Train Thieving to 41 by lockpicking northern doors
+player.nextStep();
+player.gainXP("Thieving", player.calculateXP(41) - player.skills.thieving);
+
+// Quest: Lost Her Marbles (miniquest)
+player.nextStep();
+player.completeQuest("Lost Her Marbles (miniquest)");
+
+// Quest: Temple of Ikov
+player.nextStep();
+player.completeQuest("Temple of Ikov");
+
+// Quest: The Tourist Trap
+player.nextStep();
+player.completeQuest("The Tourist Trap", {
+    agility: [4650, 4650],
+});
+
+// Quest: The Grand Tree
+player.nextStep();
+player.completeQuest("The Grand Tree", {
+    necromancy: 18400,
+});
+
+// Quest: Sea Slug
+player.nextStep();
+player.completeQuest("Sea Slug");
+
+// Quest: Fishing Contest
+player.nextStep();
+player.completeQuest("Fishing Contest");
+
+// Quest: Jungle Potion
+player.nextStep();
+player.completeQuest("Jungle Potion");
+
+// Quest: Shilo Village
+player.nextStep();
+player.completeQuest("Shilo Village");
+
+// Train Fishing to 53
+player.nextStep();
+player.gainXP("Fishing", player.calculateXP(53) - player.skills.fishing);
+
+// Cook the fish in Yeti Town
+player.nextStep();
+player.gainXP("Cooking", player.calculateXP(50) - player.skills.cooking);
+
+// Quest: Recipe for Disaster: Freeing Evil Dave
+player.nextStep();
+player.completeQuest("Recipe for Disaster: Freeing Evil Dave");
+
+// Claim 75 and 100 QP Reward from May
+player.nextStep();
+player.checkQuestPoints(100);
+player.addItem("Coins", 250_000);
+player.addItem("Coins", 250_000);
+
+// Quest: Evil Dave's Big Day Out
+player.nextStep();
+player.completeQuest("Evil Dave's Big Day Out");
+
+// Quest: Beneath Cursed Tides
+player.nextStep();
+player.completeQuest("Beneath Cursed Tides", {
+    summoning: 10000,
+});
+
+// Quest: Monkey Madness
+player.nextStep();
+player.completeQuest("Monkey Madness");
 
 // Overview
 console.log(player.overview());

@@ -33,7 +33,10 @@ module.exports = [
                 choice: [{ amount: 100 }, { amount: 100 }, { amount: 100 }],
                 forced: [],
             },
-            items: [{ name: "Rabbit Sandwich", quantity: 4 }],
+            items: [
+                { name: "Rabbit Sandwich", quantity: 4 },
+                { name: "Climbing boots", quantity: 1 },
+            ],
         },
         points: 1,
     },
@@ -61,7 +64,7 @@ module.exports = [
         requirements: {
             skills: {},
             quests: [],
-            items: [{ name: "Raw crayfish", quantity: 1 }],
+            items: [],
         },
         rewards: {
             xp: {
@@ -224,7 +227,10 @@ module.exports = [
                 ],
                 forced: [],
             },
-            items: [{ name: "Silverlight", quantity: 1 }],
+            items: [
+                { name: "Silverlight", quantity: 1 },
+                { name: "Kudos", quantity: 5 },
+            ],
         },
         points: 3,
     },
@@ -638,7 +644,7 @@ module.exports = [
             skills: {},
             quests: ["Gertrude's Cat", "Diamond in the Rough"],
             items: [
-                { name: "Cat", quantity: 1 },
+                { name: "Cat", quantity: 1, notConsumed: true },
                 { name: "Bag of salt", quantity: 1 },
                 { name: "Coins", quantity: 30 },
                 { name: "Willow logs", quantity: 1 },
@@ -776,7 +782,7 @@ module.exports = [
             skills: {
                 thieving: 24,
             },
-            quests: [],
+            quests: ["Buyers and Cellars"],
             items: [],
         },
         rewards: {
@@ -862,5 +868,782 @@ module.exports = [
             items: [],
         },
         points: 1,
+    },
+    {
+        name: "Waterfall Quest",
+        requirements: {
+            skills: {
+                construction: 24,
+            },
+            quests: [],
+            items: [
+                { name: "Air rune", quantity: 6 },
+                { name: "Earth rune", quantity: 6 },
+                { name: "Water rune", quantity: 6 },
+                { name: "Rope", quantity: 5 },
+                { name: "Oak plank", quantity: 3 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 13750, skill: "attack" },
+                    { amount: 13750, skill: "strength" },
+                ],
+            },
+            items: [
+                { name: "Gold bar", quantity: 2 },
+                { name: "Diamond", quantity: 2 },
+                { name: "Mithril seeds", quantity: 40 },
+            ],
+        },
+        points: 1,
+    },
+    {
+        name: "Dwarf Cannon",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 750, skill: "crafting" }],
+            },
+            items: [{ name: "Ammo mould", quantity: 1 }],
+        },
+        points: 1,
+    },
+    {
+        name: "Hazeel Cult",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 1500, skill: "thieving" }],
+            },
+            items: [
+                { name: "Coins", quantity: 2005 },
+                { name: "Kudos", quantity: 5 },
+            ],
+        },
+        points: 1,
+    },
+    {
+        name: "Fight Arena",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [{ name: "Coins", quantity: 5 }],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 12175, skill: "attack" },
+                    { amount: 2175, skill: "thieving" },
+                ],
+            },
+            items: [{ name: "Coins", quantity: 1000 }],
+        },
+        points: 2,
+    },
+    {
+        name: "Witch's House",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 6325, skill: "constitution" }],
+            },
+            items: [{ name: "Coins", quantity: 1000 }],
+        },
+        points: 4,
+    },
+    {
+        name: "Imp Catcher",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [{ name: "Bowl of hot water", quantity: 1 }],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 875, skill: "magic" }],
+            },
+            items: [{ name: "Amulet of accuracy", quantity: 1 }],
+        },
+        points: 1,
+    },
+    {
+        name: "Rune Mysteries",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 250, skill: "magic" },
+                    { amount: 250, skill: "runecrafting" },
+                ],
+            },
+            items: [
+                { name: "Mind rune", quantity: 70 },
+                { name: "Air talisman", quantity: 1 },
+                { name: "Kudos", quantity: 5 },
+            ],
+        },
+        points: 1,
+    },
+    {
+        name: "Rune Memories",
+        requirements: {
+            skills: {},
+            quests: ["Rune Mysteries"],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 300, skill: "magic" },
+                    { amount: 300, skill: "runecrafting" },
+                ],
+            },
+            items: [],
+        },
+        points: 1,
+    },
+    {
+        name: "Missing, Presumed Death",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    { amount: 1500, skills: ["attack", "strength", "defence", "constitution", "magic", "ranged"] },
+                ],
+                forced: [
+                    { amount: 500, skill: "prayer" },
+                    { amount: 1000, skill: "agility" },
+                ],
+            },
+            items: [{ name: "Invitation box", quantity: 1 }],
+        },
+        points: 2,
+    },
+    {
+        name: "Priest in Peril",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [
+                { name: "Wicked Hood", quantity: 1 },
+                { name: "Bucket", quantity: 1 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 1406, skill: "prayer" }],
+            },
+            items: [{ name: "Kudos", quantity: 5 }],
+        },
+        points: 1,
+    },
+    {
+        name: "Merlin's Crystal",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [{ name: "Coins", quantity: 24 }],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [],
+            },
+            items: [
+                { name: "Excalibur", quantity: 1 },
+                { name: "Kudos", quantity: 5 },
+            ],
+        },
+        points: 6,
+    },
+    {
+        name: "Holy Grail",
+        requirements: {
+            skills: {
+                attack: 30,
+            },
+            quests: ["Merlin's Crystal"],
+            items: [{ name: "Excalibur", quantity: 1 }],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 11000, skill: "prayer" },
+                    { amount: 15300, skill: "defence" },
+                ],
+            },
+            items: [],
+        },
+        points: 2,
+    },
+    {
+        name: "Observatory Quest",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [
+                { name: "Plank", quantity: 3 },
+                { name: "Bronze bar", quantity: 1 },
+                { name: "Molten glass", quantity: 1 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 2250, skill: "crafting" }],
+            },
+            items: [{ name: "Kudos", quantity: 5 }],
+        },
+        points: 2,
+    },
+    {
+        name: "Elemental Workshop I",
+        requirements: {
+            skills: {
+                crafting: 20,
+                mining: 20,
+                smithing: 20,
+            },
+            quests: [],
+            items: [
+                { name: "Thread", quantity: 1 },
+                { name: "Coal", quantity: 4 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 5000, skill: "crafting" },
+                    { amount: 5000, skill: "smithing" },
+                ],
+            },
+            items: [{ name: "Elemental shield", quantity: 1 }],
+        },
+        points: 1,
+    },
+    {
+        name: "Elemental Workshop II",
+        requirements: {
+            skills: {
+                magic: 20,
+                smithing: 30,
+            },
+            quests: ["Elemental Workshop I"],
+            items: [{ name: "Coal", quantity: 8 }],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 7500, skill: "crafting" },
+                    { amount: 7500, skill: "smithing" },
+                ],
+            },
+            items: [],
+        },
+        points: 1,
+    },
+    {
+        name: "Tribal Totem",
+        requirements: {
+            skills: {
+                thieving: 21,
+            },
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 1775, skill: "crafting" }],
+            },
+            items: [{ name: "Swordfish", quantity: 5 }],
+        },
+        points: 1,
+    },
+    {
+        name: "Troll Stronghold",
+        requirements: {
+            skills: {
+                agility: 15,
+                thieving: 30,
+            },
+            quests: ["Death Plateau"],
+            items: [{ name: "Climbing boots", quantity: 1, notConsumed: true }],
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    { req: 30, amount: 10000 },
+                    { req: 30, amount: 10000 },
+                ],
+                forced: [],
+            },
+            items: [],
+        },
+        points: 1,
+    },
+    {
+        name: "Recruitment Drive",
+        requirements: {
+            skills: {
+                herblore: 3,
+            },
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 1000, skill: "prayer" },
+                    { amount: 1000, skill: "herblore" },
+                    { amount: 1000, skill: "agility" },
+                ],
+            },
+            items: [{ name: "Initiate sallet", quantity: 1 }],
+        },
+        points: 1,
+    },
+    {
+        name: "The Golem",
+        requirements: {
+            skills: {
+                crafting: 20,
+                thieving: 25,
+            },
+            quests: [],
+            items: [
+                { name: "Vial", quantity: 1 },
+                { name: "Soft clay", quantity: 4 },
+                { name: "Papyrus", quantity: 1 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 1000, skill: "thieving" },
+                    { amount: 1000, skill: "crafting" },
+                ],
+            },
+            items: [
+                { name: "Ruby", quantity: 2 },
+                { name: "Emerald", quantity: 2 },
+                { name: "Sapphire", quantity: 2 },
+            ],
+        },
+        points: 1,
+    },
+    {
+        name: "Shadow of the Storm",
+        requirements: {
+            skills: {
+                crafting: 30,
+            },
+            quests: ["Demon Slayer", "The Golem"],
+            items: [
+                { name: "Silverlight", quantity: 1 },
+                { name: "Silver bar", quantity: 1 },
+                { name: "Vial", quantity: 1 },
+                { name: "Black wizard hat", quantity: 1, notConsumed: true },
+                { name: "Black wizard robe top", quantity: 1, notConsumed: true },
+                { name: "Black wizard robe bottom", quantity: 1, notConsumed: true },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    {
+                        amount: 10000,
+                        skills: ["attack", "strength", "defence", "constitution", "ranged", "magic", "necromancy"],
+                    },
+                ],
+                forced: [],
+            },
+            items: [{ name: "Darklight", quantity: 1 }],
+        },
+        points: 1,
+    },
+    {
+        name: "Once Upon a Slime",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 2500, skill: "cooking" }],
+            },
+            items: [{ name: "Bucket", quantity: 1 }],
+        },
+        points: 1,
+    },
+    {
+        name: "Fishing Contest",
+        requirements: {
+            skills: {
+                fishing: 10,
+            },
+            quests: [],
+            items: [
+                { name: "Coins", quantity: 5 },
+                { name: "Red vine worm", quantity: 3 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 2437, skill: "fishing" }],
+            },
+            items: [],
+        },
+        points: 1,
+    },
+    {
+        name: "Sea Slug",
+        requirements: {
+            skills: {
+                firemaking: 30,
+            },
+            quests: [],
+            items: [{ name: "Swamp paste", quantity: 1 }],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 7175, skill: "fishing" }],
+            },
+            items: [],
+        },
+        points: 1,
+    },
+    {
+        name: "Jungle Potion",
+        requirements: {
+            skills: {
+                herblore: 3,
+            },
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 775, skill: "herblore" }],
+            },
+            items: [
+                { name: "Clean snake weed", quantity: 2 },
+                { name: "Clean ardrigal", quantity: 1 },
+                { name: "Clean rogue's purse", quantity: 1 },
+            ],
+        },
+        points: 1,
+    },
+    {
+        name: "Shilo Village",
+        requirements: {
+            skills: {
+                agility: 32,
+                crafting: 20,
+            },
+            quests: ["Jungle Potion"],
+            items: [
+                { name: "Bronze wire", quantity: 1 },
+                { name: "Coins", quantity: 18 + 14 + 4 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 3875, skill: "crafting" }],
+            },
+            items: [{ name: "Coins", quantity: 2000 }],
+        },
+        points: 2,
+    },
+    {
+        name: "Temple of Ikov",
+        requirements: {
+            skills: {
+                ranged: 40,
+                thieving: 42,
+            },
+            quests: [],
+            items: [
+                { name: "Bullseye lantern (lit)", quantity: 1, notConsumed: true },
+                { name: "Yew shortbow", quantity: 1, notConsumed: true },
+                { name: "Limpwurt root", quantity: 20 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 10500, skill: "ranged" },
+                    { amount: 8000, skill: "fletching" },
+                ],
+            },
+            items: [
+                { name: "Boots of lightness", quantity: 1 },
+                { name: "Kudos", quantity: 5 },
+            ],
+        },
+        points: 1,
+    },
+    {
+        name: "The Feud",
+        requirements: {
+            skills: {
+                thieving: 30,
+            },
+            quests: [],
+            items: [
+                { name: "Coins", quantity: 1506 },
+                { name: "Leather gloves", quantity: 1, notConsumed: true },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 15000, skill: "thieving" }],
+            },
+            items: [{ name: "Coins", quantity: 500 }],
+        },
+        points: 1,
+    },
+    {
+        name: "Lost Her Marbles (miniquest)",
+        requirements: {
+            skills: {
+                thieving: 41,
+            },
+            quests: ["From Tiny Acorns (miniquest)"],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 5000 + 4800, skill: "thieving" }],
+            },
+            items: [
+                { name: "Coal stone spirit", quantity: 46 },
+                { name: "Gold stone spirit", quantity: 46 },
+                { name: "Teak logs", quantity: 126 },
+                { name: "Maple logs", quantity: 255 },
+                { name: "Raw lobster", quantity: 37 },
+                { name: "Raw swordfish", quantity: 19 },
+                { name: "Nature rune", quantity: 55 },
+                { name: "Law rune", quantity: 45 },
+            ],
+        },
+        points: 0,
+    },
+    {
+        name: "The Tourist Trap",
+        requirements: {
+            skills: {
+                fletching: 10,
+                smithing: 20,
+            },
+            quests: [],
+            items: [
+                { name: "Bronze bar", quantity: 2 },
+                { name: "Coins", quantity: 360 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    { amount: 4650, skills: ["agility", "fletching", "smithing", "thieving"] },
+                    { amount: 4650, skills: ["agility", "fletching", "smithing", "thieving"] },
+                ],
+                forced: [],
+            },
+            items: [],
+        },
+        points: 2,
+    },
+    {
+        name: "The Grand Tree",
+        requirements: {
+            skills: {
+                agility: 25,
+            },
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    {
+                        amount: 18400,
+                        skills: ["attack", "strength", "defence", "constitution", "ranged", "magic", "necromancy"],
+                    },
+                ],
+                forced: [
+                    { amount: 7900, skill: "agility" },
+                    { amount: 2150, skill: "magic" },
+                ],
+            },
+            items: [{ name: "Kudos", quantity: 5 }],
+        },
+        points: 5,
+    },
+    {
+        name: "Recipe for Disaster: Freeing Evil Dave",
+        requirements: {
+            skills: {
+                cooking: 25,
+            },
+            quests: ["Recipe for Disaster: Another Cook's Quest", "Gertrude's Cat", "Shadow of the Storm"],
+            items: [
+                { name: "Cat", quantity: 1, notConsumed: true },
+                { name: "Stew", quantity: 10 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 7000, skill: "cooking" }],
+            },
+            items: [],
+        },
+        points: 1,
+    },
+    {
+        name: "Evil Dave's Big Day Out",
+        requirements: {
+            skills: {
+                agility: 30,
+                cooking: 30,
+                herblore: 30,
+                magic: 30,
+            },
+            quests: ["Recipe for Disaster: Freeing Evil Dave"],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 50000, skill: "magic" },
+                    { amount: 20000, skill: "herblore" },
+                    { amount: 20000, skill: "agility" },
+                    { amount: 20000, skill: "cooking" },
+                ],
+            },
+            items: [{ name: "Dave's spellbook", quantity: 1 }],
+        },
+        points: 2,
+    },
+    {
+        name: "Beneath Cursed Tides",
+        requirements: {
+            skills: {
+                attack: 30,
+                cooking: 30,
+                firemaking: 30,
+                magic: 30,
+                mining: 30,
+                smithing: 30,
+                strength: 30,
+                woodcutting: 30,
+            },
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    {
+                        req: 10,
+                        amount: 10000,
+                        skills: [
+                            "attack",
+                            "constitution",
+                            "strength",
+                            "defence",
+                            "ranged",
+                            "prayer",
+                            "magic",
+                            "necromancy",
+                            "herblore",
+                            "slayer",
+                            "summoning",
+                        ],
+                    },
+                ],
+                forced: [
+                    { amount: 5000, skill: "cooking" },
+                    { amount: 5000, skill: "fishing" },
+                ],
+            },
+            items: [],
+        },
+        points: 1,
+    },
+    {
+        name: "Monkey Madness",
+        requirements: {
+            skills: {},
+            quests: ["The Grand Tree", "Tree Gnome Village"],
+            items: [
+                { name: "Gold bar", quantity: 1 },
+                { name: "Ball of wool", quantity: 1 },
+                { name: "Monkey bones", quantity: 1 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 35000, skill: "attack" },
+                    { amount: 35000, skill: "defence" },
+                    { amount: 20000, skill: "strength" },
+                    { amount: 20000, skill: "constitution" },
+                ],
+            },
+            items: [
+                { name: "Coins", quantity: 10000 },
+                { name: "Diamond", quantity: 3 },
+            ],
+        },
+        points: 3,
     },
 ];
