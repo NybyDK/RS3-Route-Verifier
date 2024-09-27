@@ -841,7 +841,7 @@ module.exports = [
                 choice: [],
                 forced: [{ amount: 2880 + 12 * 3360, skill: "construction" }],
             },
-            items: [],
+            items: [{ name: "Workshop (Tier 1)" }],
         },
         points: 1,
     },
@@ -1645,5 +1645,349 @@ module.exports = [
             ],
         },
         points: 3,
+    },
+    {
+        name: "Enter the Abyss (miniquest)",
+        requirements: {
+            skills: {
+                runecrafting: 5,
+            },
+            quests: [],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 1000, skill: "runecrafting" }],
+            },
+            items: [],
+        },
+        points: 0,
+    },
+    {
+        name: "Troll Romance",
+        requirements: {
+            skills: {
+                agility: 28,
+            },
+            quests: ["Troll Stronghold"],
+            items: [
+                { name: "Iron bar", quantity: 1 },
+                { name: "Maple logs", quantity: 1 },
+                { name: "Rope", quantity: 1 },
+                { name: "Cake tin", quantity: 1 },
+                { name: "Swamp tar", quantity: 1 },
+                { name: "Climbing boots", quantity: 1 },
+                { name: "Bucket of wax", quantity: 1 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 8000, skill: "agility" },
+                    { amount: 4000, skill: "strength" },
+                ],
+            },
+            items: [
+                { name: "Uncut diamond", quantity: 1 },
+                { name: "Uncut ruby", quantity: 2 },
+                { name: "Uncut emerald", quantity: 4 },
+            ],
+        },
+        points: 2,
+    },
+    {
+        name: "Dishonour among Thieves",
+        requirements: {
+            skills: {
+                agility: 30,
+                thieving: 30,
+            },
+            quests: ["Hazeel Cult", "Missing, Presumed Death", "Priest in Peril"],
+            items: [{ name: "Invitation box", quantity: 1 }],
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    {
+                        amount: 1500,
+                        skills: ["attack", "strength", "defence", "constitution", "ranged", "magic", "necromancy"],
+                    },
+                ],
+                forced: [
+                    { amount: 1500, skill: "agility" },
+                    { amount: 1500, skill: "thieving" },
+                    { amount: 500, skill: "dungeoneering" },
+                ],
+            },
+            items: [
+                { name: "Uncut diamond", quantity: 1 },
+                { name: "Uncut ruby", quantity: 2 },
+                { name: "Uncut emerald", quantity: 4 },
+            ],
+        },
+        points: 2,
+    },
+    {
+        name: "Murder Mystery",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [{ name: "Empty pot", quantity: 1 }],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [{ amount: 1406, skill: "crafting" }],
+            },
+            items: [{ name: "Coins", quantity: 2000 }],
+        },
+        points: 3,
+    },
+    {
+        name: "One Small Favour",
+        requirements: {
+            skills: {
+                agility: 36,
+                crafting: 25,
+                herblore: 18,
+                smithing: 30,
+            },
+            quests: ["Shilo Village"],
+            items: [
+                { name: "Steel bar", quantity: 4 },
+                { name: "Bronze bar", quantity: 1 },
+                { name: "Iron bar", quantity: 1 },
+                { name: "Empty pot", quantity: 1 },
+                { name: "Clean marrentill", quantity: 1 },
+                { name: "Clean harralander", quantity: 1 },
+                { name: "Vial of water", quantity: 1 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    { req: 30, amount: 10000 },
+                    { req: 30, amount: 10000 },
+                ],
+                forced: [{ amount: 1000, skill: "smithing" }],
+            },
+            items: [{ name: "Steel key ring", quantity: 1 }],
+        },
+        points: 2,
+    },
+    {
+        name: "King's Ransom",
+        requirements: {
+            skills: {},
+            quests: ["Holy Grail", "Murder Mystery", "One Small Favour"],
+            items: [
+                { name: "Granite (500g)", quantity: 1 },
+                { name: "Iron chainbody", quantity: 1 },
+                { name: "Bronze med helm", quantity: 1 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [],
+            },
+            items: [{ name: "Hair clip", quantity: 1 }],
+        },
+        points: 1,
+    },
+    {
+        name: "The Eyes of Glouphrie",
+        requirements: {
+            skills: {
+                construction: 5,
+                magic: 46,
+            },
+            quests: ["The Grand Tree"],
+            items: [
+                { name: "Ground mud rune", quantity: 1 },
+                { name: "Maple logs", quantity: 1 },
+                { name: "Oak logs", quantity: 1 },
+                { name: "Bucket of sap", quantity: 1 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 12000, skill: "magic" },
+                    { amount: 2500, skill: "woodcutting" },
+                    { amount: 6000, skill: "runecrafting" },
+                    { amount: 250, skill: "construction" },
+                ],
+            },
+            items: [{ name: "Small crystal seed", quantity: 1 }],
+        },
+        points: 2,
+    },
+    {
+        name: "Rune Mechanics",
+        requirements: {
+            skills: {
+                construction: 25,
+                magic: 27,
+                runecrafting: 20,
+            },
+            quests: [],
+            items: [
+                { name: "Steam rune", quantity: 5 },
+                { name: "Mind rune", quantity: 5 },
+                { name: "Body rune", quantity: 5 },
+                { name: "Emerald", quantity: 2 },
+                { name: "Pure essence", quantity: 21 },
+                { name: "Pizazz points", quantity: 5 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 900, skill: "construction" },
+                    { amount: 2300, skill: "magic" },
+                    { amount: 1850, skill: "runecrafting" },
+                ],
+            },
+            items: [],
+        },
+        points: 1,
+    },
+    {
+        name: "Carnillean Rising",
+        requirements: {
+            skills: {
+                construction: 31,
+                thieving: 33,
+            },
+            quests: ["The Blood Pact", "Hazeel Cult"],
+            items: [],
+            qp: 50,
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    { req: 30, amount: 1500 },
+                    { req: 30, amount: 1500 },
+                ],
+                forced: [
+                    { amount: 2500, skill: "thieving" },
+                    { amount: 2500, skill: "construction" },
+                ],
+            },
+            items: [
+                { name: "Coins", quantity: 5000 },
+                { name: "Purple sweet", quantity: 5 },
+                { name: "Oak plank", quantity: 100 },
+                { name: "Teak plank", quantity: 30 },
+                { name: "Mahogany plank", quantity: 10 },
+                { name: "Gold bar", quantity: 1 },
+            ],
+        },
+        points: 1,
+    },
+    {
+        name: "Heart of Stone",
+        requirements: {
+            skills: {
+                magic: 35,
+                runecrafting: 25,
+            },
+            quests: ["Carnillean Rising", "Rune Memories"],
+            items: [],
+        },
+        rewards: {
+            xp: {
+                choice: [
+                    {
+                        req: 20,
+                        amount: 500,
+                        skills: [
+                            "attack",
+                            "strength",
+                            "defence",
+                            "constitution",
+                            "ranged",
+                            "magic",
+                            "necromancy",
+                            "prayer",
+                            "summoning",
+                        ],
+                    },
+                    {
+                        req: 20,
+                        amount: 500,
+                        skills: [
+                            "attack",
+                            "strength",
+                            "defence",
+                            "constitution",
+                            "ranged",
+                            "magic",
+                            "necromancy",
+                            "prayer",
+                            "summoning",
+                        ],
+                    },
+                ],
+                forced: [
+                    { amount: 1500, skill: "runecrafting" },
+                    { amount: 1500, skill: "magic" },
+                ],
+            },
+            items: [],
+        },
+        points: 1,
+    },
+    {
+        name: "What Lies Below",
+        requirements: {
+            skills: {
+                runecrafting: 35,
+            },
+            quests: [],
+            items: [
+                { name: "Bowl", quantity: 1 },
+                { name: "Chaos rune", quantity: 15 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [],
+                forced: [
+                    { amount: 2000, skill: "defence" },
+                    { amount: 8000, skill: "runecrafting" },
+                ],
+            },
+            items: [{ name: "Kudos", quantity: 5 }],
+        },
+        points: 1,
+    },
+    {
+        name: "Murder on the Border",
+        requirements: {
+            skills: {},
+            quests: [],
+            items: [
+                { name: "Town Hall (Tier 1)", quantity: 1 },
+                { name: "Command Centre (Tier 1)", quantity: 1 },
+                { name: "Workshop (Tier 1)", quantity: 1 },
+                { name: "Chapel (Tier 1)", quantity: 1 },
+                { name: "Stone wall segment", quantity: 6 },
+                { name: "Willow frame", quantity: 12 },
+            ],
+        },
+        rewards: {
+            xp: {
+                choice: [{ req: 30, amount: 3000 }],
+                forced: [{ req: 40, amount: 8000, skill: "construction" }],
+            },
+            items: [{ name: "Kudos", quantity: 5 }],
+        },
+        points: 1,
     },
 ];

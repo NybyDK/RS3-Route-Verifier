@@ -246,6 +246,12 @@ module.exports = class Player {
             }
         }
 
+        if (this.calculateQuestPoints() < quest.requirements.qp) {
+            throw new Error(
+                `'${quest.requirements.qp}' QP is required to complete ${questName} during step ${this.step}`,
+            );
+        }
+
         for (const requiredItem of quest.requirements.items) {
             const item = this.items.find(item => item.name === requiredItem.name);
 
@@ -301,8 +307,16 @@ module.exports = class Player {
             }
         }
 
-        for (const { amount, skill } of quest.rewards.xp.forced) {
-            this.gainXP(skill, amount);
+        for (const reward of quest.rewards.xp.forced) {
+            if (
+                reward.req &&
+                this.calculateLevel(this.skills[reward.skill], reward.skill === "invention") < reward.req
+            ) {
+                throw new Error(
+                    `Skill '${reward.skill}' must be at least level ${reward.req} to receive XP from ${questName} during step ${this.step}`,
+                );
+            }
+            this.gainXP(reward.skill, reward.amount);
         }
 
         for (const item of quest.rewards.items) {
